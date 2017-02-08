@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="倒计时">
+  <meta name="Description" content="倒计时">
+  <title>倒计时</title>
+  <style type="text/css">
+	*{
+		padding:0px;
+		margin:0px;
+		background:black;
+		color:white;
+	}
+	#timer{
+		width:450px;
+		height:450px;
+		position:relative;
+		margin:70px auto;
+		background:black;
+		border:2px solid white;
+		box-shadow:0px 0px 10px #fff;
+		}
+	h3{
+	    margin:15px auto;
+		text-align:center;
+		color:white;
+		font-size:28px;
+		text-shadow:0px 0px 10px #fff;
+		}
+	div.endTime form{
+	    position:relative;
+		margin:0 auto;
+		text-align:center;
+	}
+	input{
+	    width:80px;
+		height:36px;
+		background:white;
+		border-radius:10px;
+		text-align:center;
+		color:purple;
+	}
+	#sub{
+	    position:relative;
+		margin:30px auto;
+		width:100px;
+		height:100px;
+        border-radius:50%;
+		font-size:36px;
+		color:black;
+		display:block;
+		box-shadow:0px 0px 10px #fff;
+		}
+	p{
+		font-size:24px;
+		text-align:center;
+		margin-top:10px;
+	}
+	p span{
+		color:gold;
+		font-size:36px;
+		margin:10px;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="timer">
+		<h3>开始倒计时</h3>
+		<div class="endTime">
+			<form action="#" method="post">
+				请输入：<input type="text" id="year" value="2016"/>年
+				<input type="text" id="month" value="11"/>月
+				<input type="text" id="day" value="1"/>日
+				
+			</form>
+             <input type="submit" id="sub" value="开始" />
+		</div>
+		<p>现在距离<span>国庆节</span>时间，还剩：</p>
+		<p class="c_date"><span id="Day">0</span>天<span id="Hour">0</span>小时<span id="Minutes">0</span>分<span id="Seconds">0</span>秒
+	</div>
+	<script type="text/javascript">
+		var Day=document.getElementById("Day");
+		var Hour=document.getElementById("Hour");
+		var Minutes=document.getElementById("Minutes");
+		var Seconds=document.getElementById("Seconds");
+        var oSubmit=document.getElementById("sub");
+		var onOff=true;
+		var timer;
+		oSubmit.onclick=function(){
+			if(onOff){
+            timer=setInterval(getDate,1000);
+			 this.value="暂停";
+			}else{
+				clearInterval(timer);
+				this.value="开始";
+			}
+			onOff=!onOff;
+		}
+		
+		function getDate(){
+			var year=document.getElementById("year").value;
+			var month=document.getElementById("month").value-1;
+			var day=document.getElementById("day").value;
+			var endDate=new Date(year,month,day,0,0,0);
+			var currentDate=new Date();
+			var count=(endDate.getTime()-currentDate.getTime())/1000;
+			Day.innerHTML=display(Math.floor(count/(3600*24)),3);
+			count=count%(3600*24);
+			Hour.innerHTML=display(Math.floor(count/3600),2);
+			count=count%3600;
+			Minutes.innerHTML=display(Math.floor(count/60),2);
+			count=count%60;
+			Seconds.innerHTML=display(Math.floor(count),2);
+		}
+		function display(value,num){
+			value=value.toString();
+			while(value.length<num){
+				value="0"+value;
+			}
+			return value;
+		}
+		
+	</script>
+ </body>
+</html>

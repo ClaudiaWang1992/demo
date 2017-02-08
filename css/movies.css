@@ -1,0 +1,71 @@
+  *{
+		margin:0px;
+		padding:0px;
+	}
+	body{
+		background:url("../images/bgBody.png" );
+		font-family: Trebuchet MS, Verdana, Helvetica, Arial, san-serif; 
+	}
+	#wrap{
+		width:440px;
+		height:500px;
+		padding:150px 180px 0px 180px;
+		position:relative;
+		margin:0 auto;
+		background:url("../images/bgContent.jpg") no-repeat;
+		margin-top:-2px;
+		color:white;
+	}
+	#wrap h1{
+		position:relative;
+		font-style:bold;
+		width:450px;
+		margin-top:20px;
+	}
+	#wrap ul{
+		position:relative;
+		padding:0px;
+	}
+	#wrap ul li{
+		list-style:none;
+		font-size:12px;
+		margin:0 0 4px 0;
+	}
+	label{
+		float:left;
+		margin:4px 6px 0 0;
+		text-align:right;
+		width:160px;
+	}
+	input{
+		width:216px;
+		padding:0 2px;
+		border:2px solid #1E3755;
+	}
+	select{
+		width:224px;
+		border:2px solid #1E3755;
+	}
+	textarea{
+	    width:216px;
+		padding:0 2px;
+		border:2px solid #1E3755;
+	}
+	#register{
+		width:100px;
+	}
+	#username{
+		background:#fff url('../images/status.gif') 202px 0 no-repeat;
+		padding:0 20px 0 2px;
+		width:198px;
+	}
+	#username.thinking{
+		background-position:202px -19px;
+	}
+	#username.approved{
+		background-position:202px -35px;
+	}
+	#username.denied{
+		background-color:#FF8282;
+		background-position:202px -52px;
+	}

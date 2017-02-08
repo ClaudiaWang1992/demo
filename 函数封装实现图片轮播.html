@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="函数封装">
+  <meta name="Description" content="用函数封装完成多个轮播效果">
+  <title>函数封装</title>
+  <style type="text/css">
+	#box{
+		position:relative;
+		margin:30px auto;
+		width:205px;
+		border:2px solid pink;
+	}
+	#images{
+		position:relative;
+	}
+	#images img{
+		margin:auto 0px;
+		display:none;
+        width:100%;
+	}
+	#images img.frist{
+		display:block;
+	}
+	#buttons input{
+		position:absolute;
+		height:50px;
+		width:25px;
+		top:50%;
+		text-align:center;
+		line-height:20px;
+		font-size:16px;
+		background:pink;
+		color:black;
+    }
+	#buttons input.next{
+		right:-25px;
+	}
+	#buttons input.prev{
+		left:-25px;
+	}
+	#links{
+	    position:absolute;
+		bottom:-20px;
+		width:100%;
+		text-align:center;
+	}
+	#links a{
+		width:16px;
+		height:16px;
+		margin-right:8px;
+		border-radius:50%;
+		background:pink;
+		display:inline-block;
+		line-height:16px;
+	}
+   #links a.selected{
+	background:red;
+}
+  </style>
+  <script type="text/javascript">
+  window.onload=function(){
+	var btn=document.getElementById("buttons");
+	var img=document.getElementById("images");
+	var link=document.getElementById("links");
+	  function lunbo(btn,img,link){
+		var oBtn=btn.getElementsByTagName("input");
+		var oImg=img.getElementsByTagName("img");
+		var oA=link.getElementsByTagName("a");
+		var num=0;
+		var old=oImg[0];
+		var oldlink=oA[0];
+		for(var i=0,len=oBtn.length;i<len;i++){
+			oBtn[i].index=i;
+			oBtn[i].onclick=function(){
+				if(this.index==0){
+					num++;
+					if(num==oImg.length){
+						num=0;
+					}
+					change();
+				}else{
+					num--;
+					if(num==-1){
+						num=oImg.length-1;
+					}
+				   change();
+				}
+			}
+		}
+		for(var i=0,len=oA.length;i<len;i++){
+			oA[i].index=i;
+			oA[i].onclick=function(){
+				num=this.index;
+				change();
+			}
+		}
+		function change(){
+            old.style.display="none";
+			oldlink.className="";
+			old=oImg[num];
+			oldlink=oA[num];
+			oA[num].className="selected";
+			oImg[num].style.display="block";
+		}
+	  }
+      
+	  lunbo(btn,img,link);
+  }
+  </script>
+ </head>
+ <body>
+  <div id="box">
+	<div id="images">
+		<img src="images/0.gif" class="frist"/>
+        <img src="images/1.gif"/>
+		<img src="images/2.gif"/>
+		<img src="images/3.gif"/>
+	</div>
+	<div id="buttons">
+		<input type="button" class="next" value=">"/>
+		<input type="button" class="prev"value="<"/>
+	</div>
+	<div id="links">
+		<a href="#" class="selected"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+		<a href="#"></a>
+	</div>
+  </div>
+ </body>
+</html>

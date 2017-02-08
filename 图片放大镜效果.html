@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="图片放大镜效果">
+  <meta name="Description" content="">
+  <title>图片放大镜效果</title>
+  <style type="text/css">
+	*{
+		padding:0px;
+		margin:0px;
+	}
+	#wrap{
+		width:400px;
+		height:500px;
+		position:relative;
+		margin:50px auto;
+		border:1px solid #bbb;
+	}
+	#wrap .pic{
+		width:400px;
+		height:400px;
+		position:relative;
+	}
+	#wrap .pic .pic_cover{
+		position:absolute;
+		top:0px;
+		left:0px;
+	}
+	#wrap .pic .pic_cover img{
+		display:block;
+	}
+	#wrap .pic .pic_cover .cover{
+		width:200px;
+		height:200px;
+		position:absolute;
+		background-image:url("img/cover.png");
+		top:0;
+		left:0;
+		cursor:move;
+		display:none;
+	}
+	#wrap .pic .pic_cover .show{
+		width:400px;
+		height:400px;
+		position:absolute;
+		top:0px;
+		left:-400px;
+		margin-left:10px;
+		background:#ffffcc;
+		display:none;
+		background-image:url("img/1.jpg");
+	}
+	#wrap .tab{
+		width:100%;
+        height:100px;
+		position:relative;
+	}
+	#wrap .tab ul{
+		position:absolute;
+	}
+	#wrap .tab ul li{
+		float:left;
+		margin:5px;
+		width:50px;
+		height:50px;
+		vertical-align:middle;
+		list-style:none;
+		position:absolute;
+	}
+	#wrap .tab ul li img{
+		width:100%;
+		height:100%;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="wrap">
+		<div class="pic">
+			<div class="pic_cover">
+				<img src="img/1.jpg" width=400 height=400/>
+				<div class="cover"></div>
+				<div class="show"></div>
+			</div>
+		</div>
+		<div class="tab">
+			<ul>
+				<li class="on"><img src="img/1.jpg"/></li>
+				<li><img src="img/2.jpg"/></li>
+				<li><img src="img/3.jpg"/></li>
+				<li><img src="img/4.jpg"/></li>
+				<li><img src="img/5.jpg"/></li>
+			</ul>
+		</div>
+	</div>
+ </body>
+</html>

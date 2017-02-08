@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="修改版计算器">
+  <meta name="Description" content="利用eval来实现计算">
+  <title>修改版计算器</title>
+  <style type="text/css">
+	#box{
+		position:relative;
+		margin:50px auto;
+		width:500px;
+		height:400px;
+		background:rgb(0,0,0,0.5);
+		border:2px solid black;
+		overflow:hidden;
+		}
+	#show{
+		display:block;
+		width:400px;
+		height:30px;
+		position:relative;
+		margin:20px auto;
+		background:white;
+		text-align:right;
+		}
+	#number{
+		float:left;
+		margin-left:50px;
+		}
+	#operator{
+		float:right;
+		margin-right:50px;
+	}
+	div.line{
+		line-height:70px;
+	}
+	button{
+		width:60px;
+		height:60px;
+		padding:20px;
+		margin-right:10px;
+		background:black;
+		color:white;
+		}
+  </style>
+  <script type="text/javascript">
+  window.onload=function(){
+		var oShow=document.getElementById("show");
+	//	var oNum=document.getElementById("number");
+	//  var oOper=document.getElementById("operator");
+		var oClear=document.getElementById("clear");
+		var oEqual=document.getElementById("equal");
+		var oBack=document.getElementById("back");
+		var btn=document.getElementsByTagName("button");
+		for(var i=0,len=btn.length;i<len;i++){
+			btn[i].onclick=function(){
+				oShow.value=oShow.value+this.innerHTML;
+			}
+		}
+		oEqual.onclick=function(){
+			oShow.value=eval(oShow.value);
+		}
+		oClear.onclick=function(){
+			oShow.value="";
+		}
+		oBack.onclick=function(){
+			oShow.value=oShow.value.slice(0,oShow.value.length-1);
+		}
+
+  }
+  </script>
+ </head>
+ <body>
+	<div id="box">
+		<input type="text" id="show"/>
+		<div id="number">
+			<div class="line">
+				<button>9</button>
+				<button>8</button>
+				<button>7</button>
+			</div>
+			<div class="line">
+				<button>6</button>
+				<button>5</button>
+				<button>4</button>
+			</div>
+			<div class="line">
+				<button>3</button>
+				<button>2</button>
+				<button>1</button>
+			</div>
+			<div class="line">
+				<button>0</button>
+				<button>00</button>
+				<button>.</button>
+			</div>
+		</div>
+		<div id="operator">
+			<div class="line">
+				<button id="back"> < </button>
+				<button>%</button>
+			</div>
+			<div class="line">
+				<button>+</button>
+				<button>-</button>
+			</div>
+			<div class="line">
+				<button>*</button>
+				<button>/</button>
+			</div>
+			<div class="line">
+				<button id="clear">c</button>
+				<button id="equal">=</button>
+			</div>
+		</div>
+	</div>
+ </body>
+</html>

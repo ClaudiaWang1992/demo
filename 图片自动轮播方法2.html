@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="图片轮播方法二">
+  <meta name="Keywords" content="图片轮播方法二">
+  <meta name="Description" content="图片轮播方法二">
+  <title>图片轮播方法二</title>
+  <style type="text/css">
+    *{
+		padding:0px;
+		margin:0px;
+	}
+	#box{
+		position:relative;
+		margin:50px auto;
+		border:1px solid black;
+		box-shadow:0px 0px 10px pink;
+		width:391px;
+		height:220px;
+		overflow:hidden;
+	}
+	#image{
+		height:100%;
+		position:absolute;
+    }
+	#image img{
+		float:left;
+	}
+	#dot{
+		position:absolute;
+		margin:auto;
+		left:0;
+		right:0;
+		bottom:5px;
+		text-align:center;
+		line-height:20px;
+	}
+	#dot li{
+		width:10px;
+		height:10px;
+		border-radius:50%;
+		margin-right:10px;
+		background:black;
+		display:inline-block;
+	}
+	a{
+		position:absolute;
+		height:50px;
+		width:25px;
+		text-decoration:none;
+		background:rgba(0,0,0,.5);
+		color:#fff;;
+		font-size:16px;
+		top:50%;
+		text-align:center;
+		line-height:50px;
+	    margin-top:-25px;
+		cursor:pointer;
+	}
+	#pre{
+		left:0px;
+		}
+	#next{
+	    right:0px;
+		}
+   #dot li.active{
+	   background:red;
+	  }
+  </style>
+  <script type="text/javascript" src="js/home.js"></script>
+  <script type="text/javascript" src="js/move.js"></script>
+  <script type="text/javascript">
+	window.onload=function(){
+		var oBox=document.getElementById("box");
+		var oPic=document.getElementById("image");
+		var oImg=document.getElementsByTagName("img");
+		var oDot=document.getElementById("dot");
+		var oA=document.getElementsByTagName("a");
+		var num=0;
+		var startTime=new Date();
+		var timer=null;//这个timer必须放在函数外，因为要在另一个函数内去掉定时器，放在里面会产生多个定时器，放在函数外相当于新产生的定时器会覆盖之前的定时器，定时器最好定义为全局的。
+		var picWidth=parseInt(getStyle(oBox,"width"));
+        for(var i=0;i<4;i++){
+			var oli=document.createElement("li");
+			oDot.appendChild(oli);
+		}
+		var oLi=oDot.getElementsByTagName("li");
+		oPic.style.left=-1*picWidth+"px";
+		oLi[0].className="active";
+		oPic.style.width = picWidth*(oImg.length)+"px";
+		autoPlay();
+		function tabActive(){
+				move({"obj":oPic,"attr":"left","time":1000,"target":-1*(num+1)*picWidth});
+				for(var j=0;j<oLi.length;j++){
+					oLi[j].className="";
+				}
+				oLi[num].className="active";
+		}
+		function autoPlay(){
+			timer=setInterval(function(){
+			        num++;
+					if(num==oLi.length){
+						num=0;
+						oPic.style.left="0px";
+					}
+					tabActive();
+			},3000);
+		}
+		for(var i=0;i<oA.length;i++){
+			oA[i].index=i;
+			oA[i].onclick=function(){
+				if(new Date()-startTime>1000){
+					if(this.index==1){
+						num++;
+						if(num==oLi.length){
+							num=0;
+							oPic.style.left="0px";
+						}
+					tabActive();
+					}else{
+						num--;
+						if(num==-1){
+							num=oLi.length-1;
+							oPic.style.left=-(oLi.length+1)*picWidth+"px";
+						}
+					tabActive()
+					}
+					startTime=new Date();
+				}
+			}
+		}
+		for(var i=0;i<oLi.length;i++){
+			oLi[i].index=i;
+			oLi[i].onclick=function(){
+				num=this.index;
+				tabActive();
+			}
+		}
+
+		//对象.onmouseover 鼠标移入到box上， 执行什么
+				oBox.onmouseover = function(){
+					clearInterval(timer);
+                    console.log("取消timer"+timer);
+				};
+				//对象.onmouseover 鼠标移出box， 执行什么
+				oBox.onmouseout = function(){//鼠标在边界时可能会触发多次
+				console.log("从新设置timer");
+				autoPlay();
+				/*timer=setInterval(function(){//若这里用var timer=setInterval();就会产生多个新的定时器，只要执行一次.onmouseout时间函数就会产生定时器
+				dis=-1*num*picWidth;
+				move({"obj":oPic,"attr":"left","time":1000,"target":dis});
+				for(var j=0;j<oLi.length;j++){
+					oLi[j].className="";
+				}
+				oLi[num].className="active";
+				num++;
+				if(num==4){
+					num=0;
+				}
+			},3000)*/
+			  console.log(timer);
+				};
+	}
+  </script>
+ </head>
+ <body>
+	<div id="box">
+		<div id="image">
+		    <img src="images/e.jpg" />
+			<img src="images/a.jpg" />
+            <img src="images/b.jpg" />
+			<img src="images/c.jpg"/>
+			<img src="images/e.jpg" />
+			<img src="images/a.jpg" />
+		</div>
+		<ul id="dot">
+			<!--<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>-->
+		</ul>
+		<a id="pre"> < </a>
+		<a id="next"> > </a>
+	</div>
+ </body>
+</html>

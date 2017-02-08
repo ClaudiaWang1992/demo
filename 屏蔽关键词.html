@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="屏蔽关键词">
+  <meta name="Description" content="">
+  <title>屏蔽关键词</title>
+  <style type="text/css">
+	*{
+		padding:0px;
+		margin:0px;
+	}
+	#box{
+		position:relative;
+		width:800px;
+		margin:10px auto;
+	}
+	#txt{
+        width:100%;
+		height:100px;
+		position:relative;
+	}
+	#content{  
+		width:100%;
+		height:100%;
+		border:2px solid #33ccff;
+	}
+	#submit{
+		position:absolute;
+		width:50px;
+        height:30px;
+		background:#33ccff;
+		color:white;
+		bottom:0px;
+		right:0px;
+	}
+	#comment{
+		position:relative;
+		padding-top:20px;
+	}
+	#comment div{
+		width:100%;
+		height:50px;
+		border-top:1px solid #d1d1d1;
+		padding:20px 0px;
+		position:relative;
+	}
+	#comment div a{
+		text-decoration:none;
+		display:block;
+		position:absolute;
+		top:5px;
+		right:0px;
+		font-size:14px;
+		color:#d1d1d1;
+		cursor:pointer;
+	}
+
+	#comment div span{
+		color:#33ccff;
+		margin-right:50px;
+	}
+
+	#comment div i{
+	    color:#d1d1d1;
+	}
+	#comment div p{
+		font-family:"微软雅黑";
+		font-size:16px;
+		padding:5px 0px;
+	}
+  </style>
+ </head>
+ <body>
+	 <div id="box">
+		<div id="txt">
+			<textarea id="content" rows=10 cols=100>
+			</textarea>
+			<button type="submit" id="submit">发布</button>
+		</div>
+		<div id="comment">
+		    <!--<div>
+				<a>删除</a>
+				<span>匿名用户</span><i>2016-02-11</i>
+				<p></p>
+			</div>-->
+		</div>
+	 </div>
+	 <script type="text/javascript">
+		var oCon=document.getElementById("content");
+		var oSub=document.getElementById("submit");
+		var oComment=document.getElementById("comment");
+		oSub.onclick=createDiv;
+		function createDiv(){
+			var spanArray=["匿名用户","坂田银时","神乐","志村新八","志村妙","高彬晋助","土方十四郎","冲田总悟","桂小太郎","伊丽莎白"];
+			var oDiv=document.createElement("div");
+			var oA=document.createElement("a");
+			oA.innerHTML="删除";
+			oA.onclick=deleteComment;
+			var oSpan=document.createElement("span");
+			oSpan.innerHTML=randomspan(spanArray);
+			var oI=document.createElement("i");
+			oI.innerHTML=getTime();
+			var oP=document.createElement("p");
+			oP.innerHTML=getOutput(oCon.value);
+			oDiv.appendChild(oA);
+            oDiv.appendChild(oSpan);
+			oDiv.appendChild(oI);
+			oDiv.appendChild(oP);
+			oComment.insertBefore(oDiv,oComment.firstChild);
+		}
+		function getOutput(str){
+            reg=/你妈|你麻痹|傻逼|sb|傻叉|操|你大爷|爸爸的|干|你他妈/g;
+			str=str.replace(reg,function(rel){
+				var result='';
+				for(var i=0;i<rel.length;i++){
+					result+='*';
+				}
+				return result;
+			})
+			return str;
+		}
+		function deleteComment(){
+			oComment.removeChild(this.parentNode);
+		}
+		function getTime(){
+			var time=new Date();
+			return time.getFullYear()+'-'+(time.getMonth()+1)+'-'+time.getDate()+' '+time.getHours()+":"+time.getMinutes()+":"+time.getSeconds();
+		}
+		function randomspan(obj){
+			var i=Math.floor(obj.length*Math.random());
+			return obj[i];
+		}
+	 </script>
+ </body>
+</html>

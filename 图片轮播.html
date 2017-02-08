@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="if-else作业">
+  <meta name="Description" content="图片轮播效果">
+  <title>图片轮播</title>
+  <style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+	#box{
+		position:absolute;
+		margin:auto;
+		width:400px;
+		height:500px;
+		background:rgba(0,0,0,0.2);
+		border:1px solid #a7cece;
+		left:0;
+		right:0;
+		bottom:0;
+		top:0
+	}
+	#content{
+		position:absolute;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		margin:auto;
+		border:3px solid #a7cece;
+		width:240px;
+		height:360px;
+	}
+	 #prev{
+		width:50px;
+		height:50px;
+		background-color:pink;
+		position:absolute;
+		left:0;
+		top:50%
+	}
+	 #next{
+		width:50px;
+		height:50px;
+		background-color:pink;
+		position:absolute;
+		right:0;
+		top:50%
+	}
+	img{
+		position:absolute;
+		margin:auto;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+	}
+  </style>
+  <script type="text/javascript">
+	window.onload=function(){
+		var oImage=document.getElementById("image");
+		var oPrev=document.getElementById("prev");
+		var oNext=document.getElementById("next");
+		var num=0;
+		oNext.onclick=function(){
+			if(num==4){
+				num=0;
+			}
+            num++;
+			if(num==1){
+				oImage.src="images/1.gif";
+			}else if(num==2){
+				oImage.src="images/2.gif";
+			}else if(num==3){
+				oImage.src="images/3.gif";
+				num=-1;
+			}else{
+				oImage.src="images/0.gif";
+			}
+		}
+		oPrev.onclick=function(){
+			if(num==-1){
+				num=3;
+			}
+           	num--;
+			if(num==1){
+				oImage.src="images/1.gif";
+			}else if(num==2){
+				oImage.src="images/2.gif";
+			}else if(num==3){
+				oImage.src="images/3.gif";
+			}else{
+				oImage.src="images/0.gif";
+				num=4;
+			}
+		}
+	}
+  </script>
+ </head>
+ <body>
+	<div id="box">
+		<div id="content">
+			<img id="image" src="images/0.gif">
+		</div>
+		<input id="prev" type="button" value="<"/>
+		<input id="next" type="button" value=">"/>
+	</div>
+ </body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="文字打印作业">
+  <meta name="Description" content="文字打印作业">
+  <title>文字打印作业</title>
+  <style type="text/css">
+	*{
+		padding:0px;
+		margin:0px;
+		background:black;
+		color:white;
+		font-family:'Microsoft YaHei';
+	}
+	#box{
+	    width:600px;
+		height:380px;
+		position:relative;
+		margin:50px auto;
+	}
+	#box p{
+		position:relative;
+		border:2px solid yellow;
+		height:300px;
+		font-size:16px;
+		line-height:24px;
+		font-style:bold;
+	}
+	#show{
+		margin-top:20px;
+		text-align:center;
+		border:1px solid white;
+		}
+	#show a{
+		display:inline-block;
+		width:20px;
+		height:12px;
+		background:red;
+		position:relative;
+		margin:auto 0px;
+	}
+	#box div.num{
+		text-align:center;
+		border:1px solid white;
+	}
+	#show a.active{
+		background:yellow;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="box">
+			<p>
+			第1卷在江户，因为突然从宇宙来的异人“天人”势力的抬头加上颁布废刀令，使得武士走上衰退的道路。但是有个人依然坚持武士的灵魂，他叫做坂田银时。这个喜欢吃甜食又无厘头的家伙，说不定能将腐败的江户给一分为二呢。<br>
+	        第2卷新的伙伴、巨大的生物定春使得万事屋又增添了愉悦的气氛，充满了欢乐气氛的万事屋，收到寻找不良辣妹的委托。阿银一行人很快展开行动，但是却被卷入残酷的宇宙海盗所从事的毒品走私事件、还收录了传说中的杰作“是非黑白”。<br>
+            第3卷为拯救被宇宙海贼“春雨”囚禁的志村新八和神乐，坂田银时和桂潜入了敌营。其他还有被解雇的男人跟河童还有偶像跟真选组许多角色登场。阿银被当成是纵火嫌犯？
+           </p>
+		<div id="show">
+			<a></a>
+			<a></a>
+			<a></a>
+			<a></a>
+			<a></a>
+		</div>
+		<div class="num">
+			文字的个数：<em id="counter">0</em>/<em id="total">0<em>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var oP=document.getElementsByTagName("p")[0];
+		var oShow=document.getElementById("show");
+		var oA=oShow.getElementsByTagName("a");
+		var oTotal=document.getElementById("total");
+		var oCounter=document.getElementById("counter");
+		var str=oP.innerHTML.trim();
+		var i=1;
+		oP.innerHTML="";
+		oTotal.innerHTML=str.length;
+		var timer=setInterval(function(){
+			oP.innerHTML=str.substr(0,i)+"_";
+            for(var j=0;j<oA.length;j++){
+				oA[j].className="";
+			}
+			oA[(i-1)%(oA.length)].className="active";
+            oCounter.innerHTML=i;
+			if(i==str.length){
+              //clearInterval(timer);
+			  oP.innerHTML=str.substr(0,str.length);
+			  return;//在这里由于内部函数进行返回，结束函数于是结束定时器。
+			}	
+			i++;
+		},20);
+        
+	</script>
+ </body>
+</html>

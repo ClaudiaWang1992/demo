@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="添加属性方法">
+  <meta name="Description" content="添加属性方法">
+  <title>添加属性方法</title>
+  <style type="text/css">
+   div,p{
+		height:200px;
+		width:200px;
+		margin-top:20px;
+		border:1px solid red;
+	}
+  </style>
+ </head>
+ <body>
+	<div></div>
+	<div class="on" id="a"></div>
+	<div class="active"></div>
+	<div class="on active"></div>
+	<p class="on off active" id="b"></p>
+	<script type="text/javascript">
+	   
+		function addClass(obj,attr){
+			var attrs=obj.className.split(" ");
+			for(var j=0;j<attrs.length;j++){
+				if(attrs[j]==attr){
+					break;
+				}
+			}
+			if(j==0){
+				obj.className=attr;
+			}else if(j==attrs.length){
+				attrs[j]=attr;
+				obj.className=attrs.join(" ");
+			}
+			
+		}
+		function removeClass(obj,attr){
+			var attrs=obj.className.split(" ");
+			for(var j=0;j<attrs.length;j++){
+				if(attrs[j]==attr){
+					attrs.splice(j,1);
+				}
+				obj.className=attrs.join(" ");
+			}
+		}
+		//addClass(a,"active");
+		//removeClass(b,"off");
+		//removeClass(a,"on");
+		function getElementsByClass(attr){
+			if(document.getElementsByClassName){
+				return document.getElementsByClassName(attr);
+			}else{
+				var result=[];
+                var body=document.getElementsByTagName("body")[0];
+				var obj=body.getElementsByTagName("*");
+				for(var i=0;i<obj.length;i++){
+					var attrs=obj[i].className.split(" ");
+					for(var j=0;j<attrs.length;j++){
+						if(attr==attrs[j]){
+							result.push(obj[i]);
+							break;
+						}
+					}
+				}
+			//}
+			return result;
+		}
+	</script>
+ </body>
+</html>

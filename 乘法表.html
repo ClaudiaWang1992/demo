@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="乘法表">
+  <meta name="Description" content="做一个乘法表">
+  <title>乘法表</title>
+ </head>
+ <body>
+  <script type="text/javascript">
+	for(var i=1;i<10;i++){
+		for(var j=1;j<=i;j++){
+			document.write(i+"*"+j+"="+i*j+"  ");
+		}
+		document.write("<br/>");
+	}
+	//菱形
+	//上半部分,先打出所有*号
+	for(var i=0;i<10;i++){
+		for(var j=0;j<9-i;j++){
+			document.write("&nbsp;");
+		}
+		for(var j=0;j<=(2*i-1)+1;j++)
+		{
+			document.write("* ");
+		}
+		document.write("<br/>");
+	}
+	//下半部分
+   for(var i=1;i<10;i++){
+	   for(var j=0;j<i;j++){
+		   document.write("&nbsp;");
+	   }
+	   for(var j=0;j<19-2*i;j++){
+		   document.write("* ");
+	   }
+	   document.write("<br/>");
+   }
+  </script>
+ </body>
+</html>

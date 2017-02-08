@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="DOM案例">
+  <meta name="Description" content="模拟后台删除数据">
+  <title>模拟后台删除数据</title>
+  <style type="text/css">
+	*{
+		padding:0;
+		margin:0;
+	}
+	body{
+		font-size:14px;
+		font-family:"微软雅黑";
+		background:#eee;
+	}
+	.tablebox{
+		padding:20px;
+		background:#fff;
+		margin:20px;
+	}
+    .tablebox table{
+		width:100%;
+		border-collapse:collapse;
+	}
+    .tablebox table td,th{
+		border:1px solid #ccc;
+		padding:8px 10px;
+		text-align:center;
+	}
+    .tablebox table th{
+		background:#333;
+		color:#fff;
+	}
+	.tablebox table td{
+		font-size:12px;
+	}
+	.tablebox table td a{
+		color:#333;
+		text-decoration:none;
+	}
+  </style>
+ </head>
+ <body>
+	<div class="tablebox">
+		<table>
+			<thead id="thead">
+				<tr>
+					<th class="sortd" sort="num" >ID</th>
+					<th class="sortd" sort="char">标题</th>
+					<th class="sortd" sort="time">创建时间</th>
+					<th class="sortd" sort="money">金额</th>
+                    <th>封面图片</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="tbody">
+				<tr>
+					<td>96</td>
+					<td>温暖有如初生</td>
+					<td>2016-03-21 18:58:49.0</td>
+					<td>￥1020.0</td>
+					<td>resource/content/2016/03/19/201603191204004.jpg</td>
+					<td><a href="javascript:;">删除</a></td>
+				</tr>
+
+				<tr>
+					<td>95</td>
+					<td>你错了，比 CEO 更难做的是联合创始人</td>
+					<td>2016-03-16 18:58:00.0</td>
+					<td>￥1003.0</td>
+					<td>resource/content/2016/03/16/201603161706473.jpg</td>
+					<td><a href="javascript:;">删除</a></td>
+				</tr>
+			
+				<tr>
+					<td>94</td>
+					<td>2016众筹平台抢的是什么？入口！入口！入口！</td>
+					<td>2016-03-08 19:10:00.0</td>
+					<td>￥1003.0</td>
+					<td>resource/content/2016/03/08/201603081908572.jpg</td>
+					<td><a href="javascript:;">删除</a></td>
+				</tr>
+			
+				<tr>
+					<td>93</td>
+					<td>Meerkat关闭直播？很好，你努力挣扎的样子成功吸引了我们的注意力</td>
+					<td>2016-03-08 19:08:08.0</td>
+					<td>￥10120.0</td>
+					<td>resource/content/2016/03/08/201603081905564.jpg</td>
+					<td><a href="javascript:;">删除</a></td>
+				</tr>
+			
+				<tr>
+					<td>79</td>
+					<td>一路走来，太累了</td>
+					<td>2015-11-25 14:52:30.0</td>
+					<td>￥10.0</td>
+					<td>resource/content/2015/11/25/201511251452304.jpg</td>
+					<td><a href="javascript:;">删除</a></td>
+				</tr>
+			
+				<tr>
+					<td>78</td>
+					<td>SpringMvc验证配置流程</td>
+					<td>2015-11-16 21:54:33.0</td>
+					<td>￥10110.0</td>
+					<td>resource/content/2015/11/16/201511162154013.jpg</td>
+					<td><a href="javascript:;">删除</a></td>
+				</tr>
+			
+				<tr>
+					<td>77</td>
+					<td>潭州学院-3D大旋转banner特效</td>
+					<td>2015-10-26 16:26:39.0</td>
+					<td>￥1040.0</td>
+					<td>resource/content/2015/10/26/201510261626131.png</td>
+					<td><a href="javascript:;">删除</a></td>
+				</tr>
+			
+				<tr>
+					<td>76</td>
+					<td>一瞬间成为永恒</td>
+					<td>2015-10-26 16:05:51.0</td>
+					<td>￥1010.0</td>
+					<td>resource/content/2015/10/26/201510261605512.jpg</td>
+					<td><a href="javascript:;">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script type="text/javascript">
+	   DeleteTr();//删除条目
+	   function DeleteTr(){
+			var oTbody=document.getElementById("tbody");
+			var oTr=oTbody.getElementsByTagName("tr");
+			var oDel=oTbody.getElementsByTagName("a");
+			for(var i=0;i<oDel.length;i++){
+				oDel[i].onclick=function(){
+					oTbody.removeChild(this.parentNode.parentNode);//这里要移除的节点一定是调用这个方法的节点的直接后代节点，即这个节点在调用方法节点的孩子列表中
+				}
+			}
+	   }
+      tzSortTable();
+	 //根据列表中数据大小进行排序并显示
+	    function tzSortTable(){
+		   //获取所有sortd对象
+		   var thDoms=$("thead").getElementsByClassName("sortd");
+		   var thDomArray=toArray(thDoms);
+		   //对数组中的每一项运行给定函数，这个方法无返回值，这个给定函数的参数有三个分别是1.数组项的值 2 该项在数组中的位置 3数组对象本身
+		   thDomArray.forEach(function(obj){
+				obj.addEventListener('click',function(){
+					var thObj=this;
+					var sortMark=this.getAttribute("sort");
+					var index=getDomIndex(thDoms,thObj);
+					var trDoms=$("tbody").children;
+					var trDomsArray=toArray(trDoms);
+					//这里给当前按下的元素的mark属性值去反，这里是这个元素对象的一个属性，但不是公认的属性，所以不能用getAttrbute访问到，元素属性一般都是字符串，这里是一个布尔值，表示这个对象属性，这里没有给这个属性赋初值，默认经过第一次取反获得true
+					thObj.mark=!thObj.mark;
+					trDomsArray.sort(function(a,b){
+						var v1=a.children[index].innerHTML;
+						var v2=b.children[index].innerHTML;
+						if(sortMark=='num'){
+							v1=parseFloat(v1);
+							v2=parseFloat(v2);
+							return thObj.mark? v1-v2 : v2-v1;
+						}else if(sortMark=='money'){
+							v1=parseFloat(v1.replace(/^[$|￥]/,''));
+							v2=parseFloat(v2.replace(/^[$|￥]/,''));
+							return thObj.mark? v1-v2 :v2-v1;
+						}else if(sortMark=='time'){
+							v1=stringToDate(v1).getTime();
+							v2=stringToDate(v2).getTime();
+							return thObj.mark?v1-v2 :v2-v1;
+						}else if(sortMark=='char'){
+							return thObj.mark?v1.localeCompare(v2):v2.localeCompare(v1);
+						}
+					});
+				   trDomsArray.forEach(function(obj){
+					$("tbody").appendChild(obj);
+				   });
+				},false);
+
+		   });
+	   }
+	 //将htmlcollection对象转换成数组对象
+       function toArray(doms){
+		   var array=null;
+		   try{
+				array=Array.prototype.slice.call(doms,0);//相当于在doms这个对象作用域上调用这个函数（这里这么写是因为doms对象本身没有这个函数，只能通过这种方法调用）。
+			}catch(ex){
+				array=new Array();
+				for(var i=0,len=doms.length;i<len;i++){
+					array.push(doms[i]);
+				}
+			}
+			return array;
+	   }
+
+	   //通过id获取对象
+	   function $(id){
+		   return document.getElementById(id);
+	   }
+
+	   //将字符串转换成javascript中的日期对象
+	   function stringToDate(stringDate){
+		   return new Date(stringDate.replace(/-/g,"/").replace(".0",""));
+	   }
+	   //alert(new Date("2016/05/21 14:39:28"));可用这种形式直接创建时间
+
+	   //获取某个元素在dom集合中的索引
+	   function getDomIndex(doms,dom){
+		   var _index=-1;
+		   for(var i=0,len=doms.length;i<len;i++){
+			   if(doms[i]==dom){
+				   _index=i;
+				   break
+			   }
+		   }
+		   return _index;
+	   }
+
+
+	   function getElementsByClass(obj,attr){
+		   if(obj.getElementsByClassName){
+			   return obj.getElementsByClassName(attr);
+		   }else{
+			   var doms=obj.getElementsByTagName("*");
+			   var result=[];
+			   for(var i=0;i<doms.length;i++){
+					var attrs=doms[i].className.split(" ");
+						for(var j=0;j<attrs.length;j++){
+							if(attrs[i]==attr){
+								 result.push(doms[i]);
+							}
+						}
+			   }
+			   return result;
+		   }
+	   }
+	   function addClass(obj,attr){
+		   if(obj.className==""){
+			   obj.className=attr;
+		   }else{
+			   var exist=false;
+			   var attrs=obj.className.split(" ");
+			   for(var i=0;i<attrs.length;i++){
+					if(attrs[i]==attr){
+						  exist=true;
+					}
+				}
+				if(exist==false){
+					obj.className+=obj.className+" "+attr;
+				}
+		   }
+	   }
+	   function deleteClass(obj,attr){
+		   var attrs=obj.className.split(" ");
+		   for(var i=attrs.length;i>0;i--){
+			   if(attrs[i]==attr){
+				   attrs.splice(i,1);
+			   }
+		   }
+		   obj.className=attrs.join(" ");
+	   }
+	</script>
+ </body>
+</html>

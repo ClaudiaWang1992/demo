@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="图片切换">
+  <meta name="Description" content="使用自定义属性完成图片切换">
+  <title>图片切换</title>
+  <style type="text/css">
+  img{
+	position:relative;
+    margin:20px auto;
+	display:block;
+	}
+  </style>
+  <script type="text/javascript">
+	window.onload=function(){
+		//var oOne=document.getElementById("one");
+		//var oTwo=document.getElementById("two");
+		var oImg=document.getElementsByTagName("img");
+		var onOff=true;
+	    for(var i=0;i<oImg.length;i++){
+			oImg[i].onOff="true";
+			oImg[i].onclick=active;
+		}
+		function active(){
+			 this.onOff? this.src="images/2.jpg":this.src="images/1.jpg";
+		     this.onOff=!this.onOff;
+		}
+	}
+  </script>
+ </head>
+ <body>
+	<div id="box">
+		<img id="one" src="images/1.jpg"/>
+		<img id="two" src="images/1.jpg"/>
+	</div>
+ </body>
+</html>

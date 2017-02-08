@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="获取元素">
+  <meta name="Description" content="获取元素部分作业">
+  <title>你好</title>
+  <!--css样式-->
+  <style type="text/css">
+  #box{
+      width:150px;
+	  height:150px;
+	  background:green;
+	  }
+  </style>
+ </head>
+ <body>
+	<div id="box" class="wrap"></div>
+	
+	<script type="text/javascript">
+	/*使用三种方法获取元素div，并通过innerHTML（属性？）向元素中添加内容,不能同时出现多个对元素的操作，会导致错误*/
+		//document.getElementById("box").innerHTML="使用ID获取元素";
+		//document.getElementsByTagName("div")[0].innerHTML="使用标签名（元素名）获取一组元素，并选择第一个";
+		//document.getElementsByClassName("wrap")[0].innerHTML="使用类名获取一组元素，并选择第一个"；//支持的浏览器很少
+       /* document.getElementById("box").onclick=function(){
+			alert("给元素添加click事件");
+			document.getElementById("box").innerHTML="取得元素并给其添加时间处理函数";
+			};
+		var box=document.getElementById("box");
+		box.innerHTML="使用变量引用box";
+		box.onclick=function(){
+			alert(box.innerHTML);
+		};*/
+
+		/*共有五种类型的变量，分别是number类型，string类型，object类型，boolean类型和function类型，变量本身无类型，类型取决于赋给变量的数据类型*/
+	/*	var num1=123,
+		    num2=234,
+			ch="wangjialei",
+			arr=[];
+		var f=function(){};
+
+        var a= -0.5;
+	     alert(typeof a);
+		
+		 alert(typeof ch);
+
+		var b="-111.99";
+		alert(typeof b);
+
+		var b1="520";
+		var b2=520;
+		alert(b1==b2);//值相等应该返回true*/
+		/*=是赋值操作，==值比较操作，===是全等操作（包括值和类型都要完全相等）*/
+
+		var obj=document.getElementsByTagName("div");//这个对象数组也是一个对象
+		alert(typeof obj);
+		
+		var arr1=[];
+		alert(typeof arr1);//数组在这里也是一个对象
+
+		var doc=document;
+		alert(typeof doc);//整个文档也是一个对象
+
+		var j={};
+		alert(typeof j);//json是一种专门为JavaScript诞生的数据类型，它也是一个对象
+
+		var fun1=function(){};
+		alert(typeof fun1);//函数是一个函数类型
+
+		var un;//undefinded 这里只声明了变量没有具体定义变量类型
+		alert(typeof un);
+
+		var e=document.getElementsByTagName('div');
+		e.aaa='123';//这里元素e中并没有aaa这个属性，此属性未定义所以是一个undefined
+		alert(e.aaa);
+
+		var f=false;//bool变量
+		alert(typeof f);
+	</script>
+ </body>
+</html>

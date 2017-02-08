@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="打印菱形">
+  <meta name="Description" content="输入上半部分行数，打印出菱形">
+  <title>打印菱形</title>
+  <style type="text/css">
+	#box{
+		position:relative;
+		width:800px;
+		height:800px;
+		margin:30px auto;
+      }
+  </style>
+ </head>
+ <body>
+	<div id=box>
+	</div>
+	<script type="text/javascript">
+	    var oBox=document.getElementById("box");
+	    var n=prompt("请输入菱形上部分行数")||3;
+		for(var i=1,c=n-1;i<=n;i++,c--){
+			for(var j=1;j<=c;j++){
+				oBox.innerHTML=oBox.innerHTML+"&nbsp";
+			}
+			for(var j=1;j<=2*i-1;j++){
+				oBox.innerHTML=oBox.innerHTML+"* ";
+			}
+			oBox.innerHTML=oBox.innerHTML+"<br/>";
+		}
+		for(var i=1,c=1;i<=n-1;i++,c++){
+			for(var j=1;j<=c;j++){
+				oBox.innerHTML=oBox.innerHTML+"&nbsp";
+			}
+			for(var j=1;j<=(2*n-1)-2*i;j++){
+				oBox.innerHTML=oBox.innerHTML+"* ";
+			}
+			oBox.innerHTML=oBox.innerHTML+"<br/>";
+		}
+
+	</script>
+ </body>
+</html>

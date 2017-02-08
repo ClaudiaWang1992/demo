@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="高亮关键词练习">
+  <meta name="Description" content="">
+  <title>高亮关键词练习</title>
+  <style type="text/css">
+	*{
+		padding:0px;
+		margin:0px;
+	}
+	#box{
+		position:relative;
+		margin:100px auto;
+		width:200px;
+		height:300px;
+		box-shadow:0px 0px 20px #808080;
+		border-radius:5px;
+	}
+	#content{
+        width:100%;
+		height:100%;
+        overflow:auto;
+	}
+    #search{
+		position:absolute;
+		bottom:-50px;
+		text-align:center;
+	}
+	#input{
+		height:36px;
+		width:100px;
+		text-align:left;
+    }
+	#submit{
+		height:36px;
+		width:50px;
+		font-size:16px;
+		background:#ff6633;
+		color:white;
+	}
+	#content span{
+		background:yellow;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="box">
+		<div id="content">
+			江户时代末期，被称为“天人”的异星人来袭。地球人与天人之间的战争瞬即爆发，为数众多的武士和攘夷派志士都参与与天人的战斗。幕府见识到天人强大的实力后，擅自与天人签订不平等条约，准许他们入国。其后更颁布了“废刀令”，夺走了武士的刀。自此，天人横行霸道，幕府成为了“傀儡政权”。在这样的时代，有一个武士与同伴愉快地过着异想天开的生活。
+			坂田银时
+			主人公，万事屋的老板，喜欢《JUMP》，通称“万事屋阿银”。坚信并贯彻自己的“武士道”的男人，同时也是“糖分控”离开糖就活不下去
+			志村新八
+			长相平凡，是个摘掉眼镜存在感就为零的人物，眼镜其实是本体，喜欢吐槽，曾被神乐吐槽为“带着人类的眼镜”
+			神乐
+			女主角，夜兔族，性格善良单纯，大胃王，有抖S倾向，说话时带有中国口音
+			定春
+			万事屋的吉祥物。真实身份是巨大生物“狛神”
+		</div>
+		<div id="search">
+			<input type="text" id="input"/>
+			<button id="submit">替换</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var oContent=document.getElementById("content");
+		var oInput=document.getElementById("input");
+		var oSubmit=document.getElementById("submit");
+		var otxt=oContent.innerHTML;
+		oSubmit.onclick=function(){     
+			if(oInput.value){
+				var reg=new RegExp(oInput.value,'g');
+				var txt=otxt.replace(reg,"<span>"+oInput.value+"</span>");
+				oContent.innerHTML=txt;
+			}
+		}
+	</script>
+ </body>
+</html>

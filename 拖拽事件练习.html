@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="拖拽事件练习">
+  <meta name="Description" content="">
+  <title>拖拽事件练习</title>
+  <style type="text/css">
+	*{
+		margin:0px;
+		padding:0px;
+	 }
+ #box{
+		position:absolute;
+		margin:auto;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+		width:200px;
+		height:200px;
+		background:gold;
+	}
+	/*在absolute情况下，相当于元素脱离文档流了，于是元素这里只告诉其左右外边距自动，但不告诉位置不行*/
+	/*因为imge元素非块级元素，只有块级元素会一个元素占一行，才能用居中*/
+	/*#box{
+		position:relative;
+		width:200px;
+		height:200px;
+		margin:100px auto;
+		background:gold;
+		}*/
+	 #image{
+		position:absolute;
+		margin:100px auto;
+		left:500px;
+		top:500px;
+		display:block;
+		}
+  </style>
+ </head>
+ <body style="height:1500px;">
+   //鼠标按下去执行
+	<div id="box"></div>
+	<img src="images/a.jpg" id="image" width="391" height="220" border="0" alt="">
+	<script type="text/javascript">
+	    alert(box.offsetLeft);
+		var oBox=document.getElementById("box");
+		function drag(obj){
+			obj.onmousedown=function(e){
+				var e=e||window.event;
+				var disX=e.pageX-getElementDis(this).left;
+				var disY=e.pageY-getElementDis(this).top;
+				//console.log(disX+","+disY);
+				if(obj.setCapture){
+					box.setCapture();
+				}
+				document.onmousemove=function(e){
+					var e=e||window.event;
+					//e.preventDefault();
+					var L=e.pageX-disX;
+					var T=e.pageY-disY;
+					var scrollLeft=document.body.scrollLeft||document.documentElement.scrollLeft;
+                    var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+					if(L<scrollLeft){
+						L=scrollLeft;
+					}else if(L>document.documentElement.clientWidth-obj.offsetWidth+scrollLeft){
+						
+						L=document.documentElement.clientWidth-obj.offsetWidth+scrollLeft;
+					}
+					if(T<scrollTop){
+						T=scrollTop;
+					}else if(T>document.documentElement.clientHeight-obj.offsetHeight+scrollTop){
+						T=document.documentElement.clientHeight-obj.offsetHeight+scrollTop;
+					}
+					obj.style.left=L+"px";
+					obj.style.top=T+"px";
+					obj.style.margin="0px";
+				}
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+					if(obj.releaseCapture){
+						obj.releaseCapture();
+					}
+				}
+				return false;
+			}
+		}
+		function getElementDis(element){
+			var position={left:0,top:0};
+			var current=element;
+		    while(current!==null){
+				position.left+=current.offsetLeft;
+				position.top+=current.offsetTop;
+				current=current.offsetParent;
+			}
+			return position;
+		}
+		drag(oBox);
+		drag(image);
+		function getStyle( obj,attr){
+		return obj.currentStyle? obj.currentStyle[attr] : getComputedStyle(obj,false)[attr];
+		}
+	</script>
+ </body>
+</html>

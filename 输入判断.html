@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="王佳蕾">
+  <meta name="Keywords" content="判断输入">
+  <meta name="Description" content="根据输入内容进行操作">
+  <title>判断输入</title>
+  <style type="text/css">
+	#box{
+		width:550px;
+		height:500px;
+		position:absolute;
+		margin:auto;
+		left:0px;
+		right:0px;
+		top:0px;
+		bottom:0px;
+		padding:5px;
+		background:rgba(0,0,0,0.5);
+		border:1px solid red;
+	}
+	#search{
+		line-height:36px;
+		padding:2px;
+        margin-right:auto;
+		margin-left:auto;
+	}
+	label{
+		font-size:24px;
+		margin-right:5px;
+		margin-left:5px;
+	}
+	#content{
+		font-size:24px;
+		margin-right:5px;
+	}
+	button{
+        position:absolute;
+		height:32px;
+		width:60px;
+		margin-top:3px;
+		margin-left:5px;
+		font-size:16px;
+	}
+    #show{
+	    display:none;
+		width:400px;
+		height:300px;
+		position:relative;
+		padding:10px;
+		margin-top:50px;
+		background:white;
+		border:2px solid black;
+		margin-right:auto;
+		margin-left:auto;
+		font-size:16px;
+	}
+  </style>
+  <script type="text/javascript">
+	window.onload=function(){
+		oCon=document.getElementById("content");
+		oButton=document.getElementById("button");
+		oShow=document.getElementById("show");
+		oButton.onclick=function(){
+			oShow.style.display="block";
+			if(!oCon.value){
+				oShow.innerHTML="输入字符串为空，布尔值为假";
+			}else{
+				oShow.innerHTML="输入字符串为"+oCon.value;
+//这里要想要换行能够真正做到而不是显示<br>则引用innerHTML的对象一定是一个中间可以放html内容的标签比如div等
+				if(isNaN(oCon.value)){
+					oShow.innerHTML=oShow.innerHTML+"<br/>"+"输入的内容不是数字";
+				}else{
+					oShow.innerHTML=oShow.innerHTML+"<br/>"+"输入的内容是数字";
+					if(parseInt(oCon.value)==parseFloat(oCon.value)){
+                       oShow.innerHTML=oShow.innerHTML+"<br/>"+"输入的数字是整数，因为强制类型转换为整数和浮点数的值相同";
+					   }else{
+                          oShow.innerHTML=oShow.innerHTML+"<br/>"+"输入的数字是小数，因为强制类型转换为整数和浮点数的值不同";
+						  }
+				}
+			}
+		}
+	}
+  </script>
+ </head>
+ <body>
+  <div id="box">
+	  <div id="search">
+		<label for="content">请输入内容</label>
+		<input id="content" type="text"/>
+		<button id="button">查询</button>
+	  </div>
+	<div id="show"></div>
+  </div>
+ </body>
+</html>
